@@ -12,7 +12,7 @@ export interface PostData {
   contentHtml?: string;
 }
 
-const postsDirectory = path.join(process.cwd(), "src", "posts");
+const postsDirectory = path.join(process.cwd(), "src", "data", "posts");
 
 export function getSortedPostsData(): PostData[] {
   const fileNames = fs.readdirSync(postsDirectory);
