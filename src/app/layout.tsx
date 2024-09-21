@@ -18,10 +18,49 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Header />
-        {children}
+    <html lang="en" data-theme="cupcake">
+      <body className="bg-gray-100 min-h-screen flex flex-col">
+        <header className="bg-white shadow">
+          <div className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 className="text-xl font-bold">Meu Blog</h1>
+            <nav>
+              <ul className="flex space-x-4">
+                <li>
+                  <a href="#" className="text-gray-700 hover:text-gray-900">
+                    Início
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-700 hover:text-gray-900">
+                    Sobre
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-700 hover:text-gray-900">
+                    Contato
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+
+        <main className=" flex-grow max-w-4xl mx-auto px-4 py-8">
+          <article className="bg-white p-6 rounded-lg shadow mb-8">
+            <h2 className="text-2xl font-bold mb-2">Título da Postagem</h2>
+            <p className="text-gray-700">
+              Este é um exemplo de conteúdo de postagem. Você pode adicionar
+              textos, imagens e outros elementos aqui.
+            </p>
+            {children}
+          </article>
+        </main>
+
+        <footer className="bg-white shadow">
+          <div className="max-w-4xl mx-auto px-4 py-4 text-center text-gray-600">
+            &copy; 2023 Meu Blog. Todos os direitos reservados.
+          </div>
+        </footer>
       </body>
     </html>
   );
