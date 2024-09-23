@@ -10,10 +10,12 @@ export default async function Post({ params }: PostPageProps) {
   const postData: PostData = await getPostData(params.id);
 
   return (
-    <div>
-      <h1>{postData.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: postData.contentHtml || "" }} />
-    </div>
+    <article className="bg-white p-6 rounded-lg shadow mb-8">
+      <h2 className="text-2xl font-bold mb-2">{postData.title}</h2>
+      <div
+        dangerouslySetInnerHTML={{ __html: postData.contentHtml || "" }}
+      ></div>
+    </article>
   );
 }
 

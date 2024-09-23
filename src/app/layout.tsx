@@ -1,11 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
-import Header from "@/components/Header";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -46,14 +41,7 @@ export default function RootLayout({
         </header>
 
         <main className=" flex-grow max-w-4xl mx-auto px-4 py-8">
-          <article className="bg-white p-6 rounded-lg shadow mb-8">
-            <h2 className="text-2xl font-bold mb-2">Título da Postagem</h2>
-            <p className="text-gray-700">
-              Este é um exemplo de conteúdo de postagem. Você pode adicionar
-              textos, imagens e outros elementos aqui.
-            </p>
-            {children}
-          </article>
+          {children}
         </main>
 
         <footer className="bg-white shadow">
