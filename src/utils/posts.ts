@@ -3,45 +3,45 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
+import { PostData, PostMeta } from "./types";
 
-const postsDirectory = path.join(process.cwd(), "posts");
+export const postsDirectory = path.join(process.cwd(), "posts");
 
-interface PostMetaData {
-  title: string;
-  date: string;
-}
-
-interface PostData {
-  id: string;
-  contentHtml: string;
-  title: string;
-  date: string;
-}
-
-export function getSortedPostsData(): (PostMetaData & { id: string })[] {
+export function getAllPostsData(): PostData[] {
   const fileNames = fs.readdirSync(postsDirectory);
 
-  const allPostsData = fileNames.map((fileName) => {
-    const id = fileName.replace(/\.md$/, "");
+  const allPostsData: PostData[] = fileNames
+    .filter((fileName) => /\.md$/.test(fileName))
+    .map((fileName) => {
+      const id = fileName.replace(/\.md$/, "");
 
-    const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
+      const fullPath = path.join(postsDirectory, fileName);
+      const fileContents = fs.readFileSync(fullPath, "utf8");
 
-    const matterResult = matter(fileContents);
+      const matterResult = matter(fileContents);
 
-    return {
-      id,
-      ...(matterResult.data as PostMetaData),
-    };
-  });
+      return {
+        id,
+        ...(matterResult.data as PostMeta),
+      };
+    });
 
-  return allPostsData.sort((a, b) => {
+  return allPostsData;
+}
+
+export function sortPostsByDate(posts: PostData[]): PostData[] {
+  return posts.sort((a, b) => {
     if (a.date < b.date) {
       return 1;
     } else {
       return -1;
     }
   });
+}
+
+export function getSortedPostsData(): PostData[] {
+  const allPostsData = getAllPostsData();
+  return sortPostsByDate(allPostsData);
 }
 
 export function getAllPostIds(): { params: { id: string } }[] {
@@ -70,6 +70,6 @@ export async function getPostData(id: string): Promise<PostData> {
   return {
     id,
     contentHtml,
-    ...(matterResult.data as PostMetaData),
+    ...(matterResult.data as PostMeta),
   };
 }
