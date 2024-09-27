@@ -1,4 +1,5 @@
-import { getSortedPostsData, PostData } from "@/lib/posts";
+import { getSortedPostsData } from "@/lib/posts";
+import { PostData } from "@/lib/types";
 import Link from "next/link";
 
 export default function Home() {

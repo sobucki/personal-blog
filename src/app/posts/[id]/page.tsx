@@ -1,4 +1,6 @@
-import { getAllPostIds, getPostData, PostData } from "@/lib/posts";
+import { getPostData } from "@/lib/content";
+import { getAllPostIds } from "@/lib/posts";
+import { PostData } from "@/lib/types";
 
 interface PostPageProps {
   params: {
