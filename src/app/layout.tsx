@@ -1,6 +1,8 @@
 import React from "react";
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,42 +15,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="cupcake">
+    <html lang="en">
       <body className="bg-gray-100 min-h-screen flex flex-col">
-        <header className="bg-white shadow">
-          <div className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 className="text-xl font-bold">Meu Blog</h1>
-            <nav>
-              <ul className="flex space-x-4">
-                <li>
-                  <a href="#" className="text-gray-700 hover:text-gray-900">
-                    Início
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-gray-700 hover:text-gray-900">
-                    Sobre
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-gray-700 hover:text-gray-900">
-                    Contato
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </header>
-
+        <Header />
         <main className=" flex-grow max-w-4xl mx-auto px-4 py-8">
           {children}
         </main>
 
-        <footer className="bg-white shadow">
+        {/* <footer className="bg-white shadow">
           <div className="max-w-4xl mx-auto px-4 py-4 text-center text-gray-600">
             &copy; 2023 Meu Blog. Todos os direitos reservados.
           </div>
-        </footer>
+        </footer> */}
+        <Footer />
       </body>
     </html>
   );
